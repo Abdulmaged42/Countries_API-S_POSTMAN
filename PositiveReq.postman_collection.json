@@ -1,0 +1,927 @@
+{
+	"info": {
+		"_postman_id": "ad0776cc-a608-4e3c-9af1-04315483027b",
+		"name": "PositiveReq",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Search by All information",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"//validating jason parameters with valid informations about Afghanistan country\r",
+							"const country = response.find(item =>item.name == \"Afghanistan\");\r",
+							"const currency = country.currencies.find(C => C.code === \"AFN\");\r",
+							"  //get the languages information and save it into variable\r",
+							"    const lang = country.languages.find(l => l.iso639_1 === \"ps\");\r",
+							"    const SecondLang = country.languages.find(l => l.iso639_1 === \"uz\");\r",
+							"    const ThirdLang = country.languages.find(l => l.iso639_1 === \"tk\");\r",
+							"    //get the regionalBlocs information and save it into variable\r",
+							"    const regionalbloc = country.regionalBlocs.find(r => r.acronym === \"SAARC\");\r",
+							"pm.test(\"this is the right country' Afghanistan'\", function () {\r",
+							"    \r",
+							"    console.log(country);\r",
+							"    pm.expect(country.name).to.eql(\"Afghanistan\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".af\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"AF\");\r",
+							"    pm.expect(country.alpha3Code).to.eql(\"AFG\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"93\");\r",
+							"    pm.expect(country.capital).to.eql(\"Kabul\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"Afġānistān\");\r",
+							"    pm.expect(country.region).to.eql(\"Asia\");\r",
+							"    pm.expect(country.subregion).to.eql(\"Southern Asia\");\r",
+							"    pm.expect(country.population).to.eql(27657145);\r",
+							"    pm.expect(country.latlng).to.include(33.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Afghan\");\r",
+							"    pm.expect(country.area).to.eql(652230.0);\r",
+							"    pm.expect(country.gini).to.eql(27.8);\r",
+							"    pm.expect(country.timezones).to.include(\"UTC+04:30\");\r",
+							"    pm.expect(country.borders).to.include(\"IRN\",\"PAK\",\"TKM\",\"UZB\",\"TJK\",\"CHN\");\r",
+							"    pm.expect(country.nativeName).to.eql(\"افغانستان\");\r",
+							"    pm.expect(country.numericCode).to.eql(\"004\");\r",
+							"    //validate currencies information related to country\r",
+							"    pm.expect(currency.code).to.eql(\"AFN\");\r",
+							"    pm.expect(currency.name).to.eql(\"Afghan afghani\");\r",
+							"    pm.expect(currency.symbol).to.eql(\"؋\");\r",
+							"    //validate frist language information related to country\r",
+							"    pm.expect(lang.iso639_1).to.equal(\"ps\");\r",
+							"    pm.expect(lang.iso639_2).to.equal(\"pus\");\r",
+							"    pm.expect(lang.name).to.equal(\"Pashto\");\r",
+							"    pm.expect(lang.nativeName).to.equal(\"پښتو\");\r",
+							"    //validate second language information related to country\r",
+							"    pm.expect(SecondLang.iso639_1).to.equal(\"uz\");\r",
+							"    pm.expect(SecondLang.iso639_2).to.equal(\"uzb\");\r",
+							"    pm.expect(SecondLang.name).to.equal(\"Uzbek\");\r",
+							"    pm.expect(SecondLang.nativeName).to.equal(\"Oʻzbek\");\r",
+							"    //validate third language information related to country\r",
+							"    pm.expect(ThirdLang.iso639_1).to.equal(\"tk\");\r",
+							"    pm.expect(ThirdLang.iso639_2).to.equal(\"tuk\");\r",
+							"    pm.expect(ThirdLang.name).to.equal(\"Turkmen\");\r",
+							"    pm.expect(ThirdLang.nativeName).to.equal(\"Türkmen\");\r",
+							"    //validating translations\r",
+							"    pm.expect(country.translations.de).to.eql(\"Afghanistan\");\r",
+							"    pm.expect(country.translations.es).to.eql(\"Afganistán\");\r",
+							"    pm.expect(country.translations.fr).to.eql(\"Afghanistan\");\r",
+							"    pm.expect(country.translations.ja).to.eql(\"アフガニスタン\");\r",
+							"    pm.expect(country.translations.it).to.eql(\"Afghanistan\");\r",
+							"    pm.expect(country.translations.br).to.eql(\"Afeganistão\");\r",
+							"    pm.expect(country.translations.pt).to.eql(\"Afeganistão\");\r",
+							"    pm.expect(country.translations.nl).to.eql(\"Afghanistan\");\r",
+							"    pm.expect(country.translations.hr).to.eql(\"Afganistan\");\r",
+							"    pm.expect(country.translations.fa).to.eql(\"افغانستان\");\r",
+							"\r",
+							"    pm.expect(country.flag).to.eql(\"https://restcountries.eu/data/afg.svg\");\r",
+							"    //validating regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.eql(\"SAARC\");\r",
+							"    pm.expect(regionalbloc.name).to.eql(\"South Asian Association for Regional Cooperation\");\r",
+							"    pm.expect(regionalbloc.otherAcronyms).to.be.empty;\r",
+							"    pm.expect(regionalbloc.otherNames).to.be.empty;\r",
+							"});\r",
+							"//Asserting a value type\r",
+							"//CHECK about data with valid values \r",
+							"  pm.test(\"Test data type is correct\", () => {\r",
+							"  pm.expect(country).to.be.an(\"object\");\r",
+							"  pm.expect(country.name).to.be.a(\"string\");\r",
+							"  pm.expect(country.population).to.be.a(\"number\");\r",
+							"  pm.expect(country.languages).to.be.an(\"array\");\r",
+							"  pm.expect(country.website).to.be.undefined;\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/all",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"all"
+					]
+				},
+				"description": "response with all countries and each details "
+			},
+			"response": []
+		},
+		{
+			"name": "Search by  Native name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//search by native name\r",
+							"    const country = response.find(item =>item.nativeName == \"Eesti\");\r",
+							"//validating jason parameters with valid native name\r",
+							"pm.test(\"this is the correct country\", function () {\r",
+							"    \r",
+							"    pm.expect(country.nativeName).to.eql(\"Eesti\");\r",
+							"});\r",
+							"//validating jason parameters with valid native name and related data\r",
+							"pm.test(\"this is the correct data\", function () {\r",
+							"    \r",
+							"    //check data related to native name\r",
+							"    pm.expect(country.nativeName).to.eql(\"Eesti\");\r",
+							"    pm.expect(country.name).to.eql(\"Estonia\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".ee\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"Eesti\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"EE\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"372\");\r",
+							"    pm.expect(country.capital).to.eql(\"Tallinn\");\r",
+							"    pm.expect(country.population).to.eql(1315944);\r",
+							"    pm.expect(country.subregion).to.eql(\"Northern Europe\");\r",
+							"    //get the languages information and save it into variable\r",
+							"    const lang = country.languages.find(m => m.iso639_1 === \"et\");\r",
+							"    pm.expect(lang.iso639_1).to.equal(\"et\");\r",
+							"    \r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/name/eesti",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"name",
+						"eesti"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by Partial name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							" //search by partial name\r",
+							"    const country = response.find(item =>item.name == \"United Arab Emirates\");\r",
+							"\r",
+							"pm.test(\"this is the correct country\", function () {\r",
+							"    \r",
+							"    pm.expect(country.name).to.eql(\"United Arab Emirates\");\r",
+							"});\r",
+							"//validating jason parameters with valid partial name ana related data\r",
+							"pm.test(\"this is the correct data\", function () {\r",
+							"   \r",
+							"    //check data related to partial name\r",
+							"    pm.expect(country.name).to.eql(\"United Arab Emirates\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".ae\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"UAE\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"AE\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"971\");\r",
+							"    pm.expect(country.capital).to.eql(\"Abu Dhabi\");\r",
+							"    pm.expect(country.population).to.eql(9856000);\r",
+							"    pm.expect(country.subregion).to.eql(\"Western Asia\");\r",
+							"    pm.expect(country.latlng).to.include(24.0,54.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Emirati\");\r",
+							"    pm.expect(country.area).to.eql(83600.0);\r",
+							"    //get the languages information and save it into variable \r",
+							"    const lang = country.languages.find(m => m.iso639_1 === \"ar\");\r",
+							"    pm.expect(lang.iso639_1).to.equal(\"ar\");\r",
+							"});\r",
+							"\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/name/united",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"name",
+						"united"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by  FullName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//search by full name\r",
+							" const country = response.find(item =>item.name == \"Aruba\");\r",
+							"//validating jason parameters with valid full name\r",
+							"pm.test(\"this is the correct country\", function () {\r",
+							"    pm.expect(country.name).to.eql(\"Aruba\");\r",
+							"});\r",
+							"//validating jason parameters with valid full name and related data\r",
+							"pm.test(\"this is the correct data\", function () {\r",
+							"   \r",
+							"    //check data related to full name\r",
+							"    pm.expect(country.name).to.eql(\"Aruba\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".aw\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"AW\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"AW\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"297\");\r",
+							"    pm.expect(country.capital).to.eql(\"Oranjestad\");\r",
+							"    pm.expect(country.population).to.eql(107394);\r",
+							"    pm.expect(country.subregion).to.eql(\"Caribbean\");\r",
+							"    pm.expect(country.latlng).to.include(12.5,-69.96666666);\r",
+							"    pm.expect(country.demonym).to.eql(\"Aruban\");\r",
+							"    pm.expect(country.area).to.eql(180.0);\r",
+							"    //get the languages information and save it into variable\r",
+							"    const lang = country.languages.find(m => m.iso639_1 === \"nl\");\r",
+							"    pm.expect(lang.iso639_1).to.equal(\"nl\");\r",
+							"});\r",
+							"//Asserting a value type\r",
+							"//CHECK  data TYPES with valid values \r",
+							"  pm.test(\"Test data type is corrct\", () => {\r",
+							"  pm.expect(country).to.be.an(\"object\");\r",
+							"  pm.expect(country.name).to.be.a(\"string\");\r",
+							"  pm.expect(country.population).to.be.a(\"number\");\r",
+							"  pm.expect(country.languages).to.be.an(\"array\");\r",
+							"  pm.expect(country.website).to.be.undefined;\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/name/aruba?fullText=true",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"name",
+						"aruba"
+					],
+					"query": [
+						{
+							"key": "fullText",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search by country code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const country = pm.response.json();\r",
+							"//validating jason parameters with valid  alpha2Code\r",
+							"pm.test(\"this is this is the Correct alpha2Code\", function () {\r",
+							" pm.expect(country.alpha2Code).to.eql(\"CO\");\r",
+							"});\r",
+							"//validating jason parameters with valid full alpha2Code and related data\r",
+							"pm.test(\"this is this is the Correct data\", function () {\r",
+							"    \r",
+							"    //check data related to country code\r",
+							"    pm.expect(country.name).to.eql(\"Colombia\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".co\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"CO\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"CO\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"57\");\r",
+							"    pm.expect(country.capital).to.eql(\"Bogotá\");\r",
+							"    pm.expect(country.population).to.eql(48759958);\r",
+							"    pm.expect(country.subregion).to.eql(\"South America\");\r",
+							"    pm.expect(country.latlng).to.include(4.0,-72.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Colombian\");\r",
+							"    pm.expect(country.area).to.eql(1141748.0);\r",
+							"    //get the languages information and save it into variable\r",
+							"    const lang = country.languages.find(m => m.iso639_1 === \"es\");\r",
+							"    pm.expect(lang.iso639_1).to.equal(\"es\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 700ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/alpha/co",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"alpha",
+						"co"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search by list of codes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"//search by list of codes\r",
+							"const code1 = response.find(item =>item.alpha3Code == \"COL\");\r",
+							"const code2 = response.find(item =>item.alpha2Code == \"NO\");\r",
+							"const code3 = response.find(item =>item.alpha2Code == \"EE\");\r",
+							"//validating jason parameters with valid  alpha2Code and alpha3Code\r",
+							"pm.test(\"this is this is the Correct codes\", function () {\r",
+							"    pm.expect(code1.alpha3Code).to.eql(\"COL\");\r",
+							"   pm.expect(code2.alpha2Code).to.eql(\"NO\");\r",
+							"   pm.expect(code3.alpha2Code).to.eql(\"EE\");\r",
+							"});\r",
+							"//get the languages information and save it into variable\r",
+							"const lang1 = code1.languages.find(m => m.iso639_1 === \"es\");\r",
+							"const lang2 = code2.languages.find(m => m.iso639_1 === \"no\");\r",
+							"const lang3 = code3.languages.find(m => m.iso639_1 === \"et\");\r",
+							"//validating jason parameters with valid  alpha2Code and alpha3Code and related data\r",
+							"pm.test(\"this is this is the Correct data'\", function () {\r",
+							"    \r",
+							"    //check data by  code1\r",
+							"    pm.expect(code1.name).to.eql(\"Colombia\");\r",
+							"    pm.expect(code1.topLevelDomain).to.include(\".co\");\r",
+							"    pm.expect(code1.callingCodes).to.include(\"57\");\r",
+							"    pm.expect(code1.capital).to.eql(\"Bogotá\");\r",
+							"    pm.expect(lang1.iso639_1).to.equal(\"es\");\r",
+							"    pm.expect(code1.subregion).to.eql(\"South America\");\r",
+							"    pm.expect(code1.population).to.eql(48759958);\r",
+							"    pm.expect(code1.latlng).to.include(4.0);\r",
+							"    pm.expect(code1.demonym).to.eql(\"Colombian\");\r",
+							"    pm.expect(code1.area).to.eql(1141748.0);\r",
+							"     //check data by  code1\r",
+							"    pm.expect(code2.name).to.eql(\"Norway\");\r",
+							"    pm.expect(code2.callingCodes).to.include(\"47\");\r",
+							"    pm.expect(code2.capital).to.eql(\"Oslo\");\r",
+							"    pm.expect(code2.altSpellings).to.include(\"Norge\",\"NO\");\r",
+							"    pm.expect(code2.region).to.eql(\"Europe\");\r",
+							"    pm.expect(code2.subregion).to.eql(\"Northern Europe\");\r",
+							"    pm.expect(code2.population).to.eql(5223256);\r",
+							"    pm.expect(code2.latlng).to.include(62.0,10.0);\r",
+							"    pm.expect(code2.demonym).to.eql(\"Norwegian\");\r",
+							"    pm.expect(code2.area).to.eql(323802.0);\r",
+							"    pm.expect(lang2.iso639_1).to.equal(\"no\");\r",
+							"     //check data by  code3\r",
+							"    pm.expect(code3.name).to.eql(\"Estonia\");\r",
+							"    pm.expect(code3.callingCodes).to.include(\"372\");\r",
+							"    pm.expect(code3.capital).to.eql(\"Tallinn\");\r",
+							"    pm.expect(code3.altSpellings).to.include(\"Eesti\",\"Republic of Estonia\");\r",
+							"    pm.expect(code3.region).to.eql(\"Europe\");\r",
+							"    pm.expect(code3.subregion).to.eql(\"Northern Europe\");\r",
+							"    pm.expect(code3.population).to.eql(1315944);\r",
+							"    pm.expect(code3.latlng).to.include(59.0,26.0);\r",
+							"    pm.expect(code3.demonym).to.eql(\"Estonian\");\r",
+							"    pm.expect(code3.area).to.eql(45227.0);\r",
+							"    pm.expect(lang3.iso639_1).to.equal(\"et\");\r",
+							"});\r",
+							"\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/alpha?codes=col;no;ee",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"alpha"
+					],
+					"query": [
+						{
+							"key": "codes",
+							"value": "col;no;ee"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by  currency code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"const country = response.find(item =>item.name == \"Colombia\");\r",
+							"//get the currencies information and save it into variable\r",
+							"const currency = country.currencies.find(C => C.code === \"COP\");\r",
+							"//validating jason parameters with valid currency\r",
+							"pm.test(\"this is this is the Correct code and name and sympol\", function () {\r",
+							"    pm.expect(currency.code).to.equal(\"COP\");\r",
+							"    pm.expect(currency.name).to.equal(\"Colombian peso\");\r",
+							"    pm.expect(currency.symbol).to.equal(\"$\");\r",
+							"});\r",
+							"//validating jason parameters with valid currency and related data\r",
+							"pm.test(\"this is the Correct data for 'Colombia'\", function () {\r",
+							"    \r",
+							"    //check data related to country code\r",
+							"    pm.expect(currency.code).to.equal(\"COP\");\r",
+							"    pm.expect(currency.name).to.equal(\"Colombian peso\");\r",
+							"    pm.expect(currency.symbol).to.equal(\"$\");\r",
+							"    pm.expect(country.name).to.eql(\"Colombia\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".co\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"CO\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"CO\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"57\");\r",
+							"    pm.expect(country.capital).to.eql(\"Bogotá\");\r",
+							"    pm.expect(country.population).to.eql(48759958);\r",
+							"    pm.expect(country.subregion).to.eql(\"South America\");\r",
+							"    pm.expect(country.latlng).to.include(4.0,-72.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Colombian\");\r",
+							"    pm.expect(country.area).to.eql(1141748.0);\r",
+							"    //get the languages information and save it into variable\r",
+							"    const lang = country.languages.find(m => m.iso639_1 === \"es\");\r",
+							"    pm.expect(lang.iso639_1).to.equal(\"es\");\r",
+							"});\r",
+							"\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/currency/cop",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"currency",
+						"cop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by language code.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"const country = response.find(item =>item.name == \"Belize\");\r",
+							"   //get the languages information and save it into variable\r",
+							"const lang1 = country.languages.find(m => m.iso639_1 === \"en\");\r",
+							"//'es' here second language to 'Belize' country\r",
+							"const SecondLang = country.languages.find(m => m.iso639_1 === \"es\");\r",
+							"//validating jason parameters with language 'EN' language \r",
+							"pm.test(\"this is the correct language 'EN' for 'Belize'\", function () {\r",
+							"    pm.expect(lang1.iso639_2).to.equal(\"eng\");\r",
+							"    pm.expect(lang1.name).to.equal(\"English\");\r",
+							"    pm.expect(lang1.nativeName).to.equal(\"English\");\r",
+							"});\r",
+							"//validating jason parameters with language 'es' language \r",
+							"pm.test(\"this is the correct language 'ES' for 'Belize'\", function () {\r",
+							"    pm.expect(SecondLang.iso639_2).to.equal(\"spa\");\r",
+							"    pm.expect(SecondLang.name).to.equal(\"Spanish\");\r",
+							"    pm.expect(SecondLang.nativeName).to.equal(\"Español\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"this is the correct data for 'Belize'\", function () {\r",
+							"    \r",
+							"    //check data related to Belize language code\r",
+							"    pm.expect(lang1.iso639_2).to.equal(\"eng\");\r",
+							"    pm.expect(lang1.name).to.equal(\"English\");\r",
+							"    pm.expect(lang1.nativeName).to.equal(\"English\");\r",
+							"    pm.expect(SecondLang.iso639_2).to.equal(\"spa\");\r",
+							"    pm.expect(SecondLang.name).to.equal(\"Spanish\");\r",
+							"    pm.expect(SecondLang.nativeName).to.equal(\"Español\")\r",
+							"    pm.expect(country.name).to.eql(\"Belize\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".bz\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"BZ\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"BZ\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"501\");\r",
+							"    pm.expect(country.capital).to.eql(\"Belmopan\");\r",
+							"    pm.expect(country.population).to.eql(370300);\r",
+							"    pm.expect(country.subregion).to.eql(\"Central America\");\r",
+							"    pm.expect(country.latlng).to.include(17.25,-88.75);\r",
+							"    pm.expect(country.demonym).to.eql(\"Belizean\");\r",
+							"    pm.expect(country.area).to.eql(22966.0);\r",
+							" \r",
+							"});\r",
+							"\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/lang/es",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"lang",
+						"es"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search by capital city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//search by capital city\r",
+							"    const country = response.find(item =>item.capital == \"Tallinn\");\r",
+							"//validating jason parameters with valid capital city\r",
+							"pm.test(\"this is the CORRECT capital city\", function () {\r",
+							"    pm.expect(country.capital).to.eql(\"Tallinn\");\r",
+							"});\r",
+							"//validating jason parameters with valid capital city and related data\r",
+							"pm.test(\"this is the CORRECT data for 'Tallinn'\", function () {\r",
+							"    \r",
+							"    //check data related to native name\r",
+							"    pm.expect(country.nativeName).to.eql(\"Eesti\");\r",
+							"    pm.expect(country.name).to.eql(\"Estonia\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".ee\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"Eesti\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"EE\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"372\");\r",
+							"    pm.expect(country.capital).to.eql(\"Tallinn\");\r",
+							"    pm.expect(country.population).to.eql(1315944);\r",
+							"    pm.expect(country.subregion).to.eql(\"Northern Europe\");\r",
+							"    //get the languages information and save it into variable\r",
+							"    const lang = country.languages.find(m => m.iso639_1 === \"et\");\r",
+							"    pm.expect(lang.iso639_1).to.equal(\"et\");\r",
+							"});\r",
+							"\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/capital/tallinn",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"capital",
+						"tallinn"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by callingCodes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							" //search by country callingCodes\r",
+							"    const country = response.find(item =>item.callingCodes == \"372\");\r",
+							"//validating jason parameters with valid callingCodes\r",
+							"pm.test(\"this is the correct  for calling code'372'\", function () {\r",
+							"   pm.expect(country.callingCodes).to.include(\"372\");\r",
+							"});\r",
+							"//validating jason parameters with valid callingCodes ana related data\r",
+							"pm.test(\"this is the correct data for calling code'372'\", function () {\r",
+							"   \r",
+							"    //check data related to country callingCodes\r",
+							"    pm.expect(country.nativeName).to.eql(\"Eesti\");\r",
+							"    pm.expect(country.name).to.eql(\"Estonia\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".ee\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"Eesti\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"EE\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"372\");\r",
+							"    pm.expect(country.capital).to.eql(\"Tallinn\");\r",
+							"    pm.expect(country.population).to.eql(1315944);\r",
+							"    pm.expect(country.subregion).to.eql(\"Northern Europe\");\r",
+							"    //get the languages information and save it into variable\r",
+							"    const lang = country.languages.find(m => m.iso639_1 === \"et\");\r",
+							"    pm.expect(lang.iso639_1).to.equal(\"et\");\r",
+							"});\r",
+							"\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/callingcode/372",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"callingcode",
+						"372"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regionEurope",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//search by region\r",
+							"const regioncountry = response.find(item =>item.region == \"Europe\");\r",
+							"//validating jason parameters with valid country region \r",
+							"pm.test(\"Your is the correct region \", function () {\r",
+							"    pm.expect(regioncountry.region).to.eql(\"Europe\");\r",
+							"});\r",
+							" //validating jason parameters with valid country region and related data\r",
+							"pm.test(\"Your is the correct data for region'Europe'\", function () {\r",
+							"    \r",
+							"    //check data related to regioncountry 'Europe'\r",
+							"    pm.expect(regioncountry.name).to.eql(\"Åland Islands\");\r",
+							"    pm.expect(regioncountry.topLevelDomain).to.include(\".ax\");\r",
+							"    pm.expect(regioncountry.alpha2Code).to.eql(\"AX\");\r",
+							"    pm.expect(regioncountry.callingCodes).to.include(\"358\");\r",
+							"    pm.expect(regioncountry.capital).to.eql(\"Mariehamn\");\r",
+							"    pm.expect(regioncountry.population).to.eql(28875);\r",
+							"    pm.expect(regioncountry.subregion).to.eql(\"Northern Europe\");\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/region/europe",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"region",
+						"europe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regionAmericas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//search by region\r",
+							"const regioncountry = response.find(item =>item.region == \"Americas\");\r",
+							"//validating jason parameters with valid country region \r",
+							"pm.test(\"Your is the correct region 'Americas' \", function () {\r",
+							"    pm.expect(regioncountry.region).to.eql(\"Americas\");\r",
+							"});\r",
+							" //validating jason parameters with valid country region and related data\r",
+							"pm.test(\"Your is the correct data for region 'Americas' \", function () {\r",
+							"    \r",
+							"    //check data related to regioncountry 'Americas'\r",
+							"    pm.expect(regioncountry.name).to.eql(\"Anguilla\");\r",
+							"    pm.expect(regioncountry.region).to.eql(\"Americas\");\r",
+							"    pm.expect(regioncountry.topLevelDomain).to.include(\".ai\");\r",
+							"    pm.expect(regioncountry.alpha2Code).to.eql(\"AI\");\r",
+							"    pm.expect(regioncountry.callingCodes).to.include(\"1264\");\r",
+							"    pm.expect(regioncountry.capital).to.eql(\"The Valley\");\r",
+							"    pm.expect(regioncountry.population).to.eql(13452);\r",
+							"    pm.expect(regioncountry.subregion).to.eql(\"Caribbean\");\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/region/Americas",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"region",
+						"Americas"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

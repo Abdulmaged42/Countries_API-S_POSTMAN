@@ -1,0 +1,1123 @@
+{
+	"info": {
+		"_postman_id": "9ff7975b-dda7-47e2-a7de-d762432797de",
+		"name": "Regional Bloc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Search by regional bloc AU",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//search by specific country in AU regionbloc\r",
+							"const country = response.find(item =>item.name == \"Egypt\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"AU\");\r",
+							"//validating jason parameters with valid regionalbloc acronym \r",
+							"pm.test(\"this is  the right regionalbloc acronym  'AU'\", function () {\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"AU\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc for  country AND data related\r",
+							"pm.test(\"this is the right regionalbloc 'AU'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"AU\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"African Union\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Union africaine\", \"  الاتحاد الأفريقي \");\r",
+							"    pm.expect(country.name).to.eql(\"Egypt\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".eg\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"EG\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"EG\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"20\");\r",
+							"    pm.expect(country.capital).to.eql(\"Cairo\");\r",
+							"    pm.expect(country.population).to.eql(91290000);\r",
+							"    pm.expect(country.subregion).to.eql(\"Northern Africa\");\r",
+							"    pm.expect(country.latlng).to.include(27.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Egyptian\");\r",
+							"    pm.expect(country.area).to.eql(1002450.0);\r",
+							" \r",
+							"});\r",
+							"                     //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym and valid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc acronym  'AU'\", function () {\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Arab League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat ad-Duwal al-ʻArabīyah\",\"League of Arab States\",\"Unión Africana\",\"جامعة الدول العربية \");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'AU'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"AU\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\",\"League of  States\",\" Africana\",\"جامعة  العربية \");\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/AU",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"AU"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regional bloc AL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//search by regionalbloc\r",
+							"const country = response.find(item =>item.name == \"Egypt\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"AL\");\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is  the right regionalbloc acronym  'AL'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"AL\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc for  country\r",
+							"pm.test(\"this is the right regionalbloc 'AL'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"AL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Arab League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat ad-Duwal al-ʻArabīyah\",\"League of Arab States\",\"Unión Africana\",\"جامعة الدول العربية \");\r",
+							"    pm.expect(country.name).to.eql(\"Egypt\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".eg\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"EG\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"EG\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"20\");\r",
+							"    pm.expect(country.capital).to.eql(\"Cairo\");\r",
+							"    pm.expect(country.population).to.eql(91290000);\r",
+							"    pm.expect(country.subregion).to.eql(\"Northern Africa\");\r",
+							"    pm.expect(country.latlng).to.include(27.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Egyptian\");\r",
+							"    pm.expect(country.area).to.eql(1002450.0);\r",
+							" \r",
+							"});\r",
+							"\r",
+							"                    //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is not the right regionalbloc acronym  'AL'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Arab League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat ad-Duwal al-ʻArabīyah\",\"League of Arab States\",\"Unión Africana\",\"جامعة الدول العربية \");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'AL'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"AL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\",\"League of  States\",\" Africana\",\"جامعة  العربية \");\r",
+							"});\r",
+							"\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/AL",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"AL"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regional bloc NAFTA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//validating jason parameters with valid regionalbloc for  country\r",
+							"const country = response.find(item =>item.name == \"Mexico\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"NAFTA\");\r",
+							"//validating jason parameters with valid regionalbloc acronym \r",
+							"pm.test(\"this is  the right regionalbloc acronym  'NAFTA'\", function () {\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"NAFTA\");\r",
+							" \r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym and related data\r",
+							"pm.test(\"this is the right regionalbloc 'NAFTA'\", function () {\r",
+							"    //check data related to Mexico regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"NAFTA\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"North American Free Trade Agreement\");\r",
+							"    pm.expect(regionalbloc.otherAcronyms).to.be.empty;\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Tratado de Libre Comercio de América del Norte\",\"Accord de Libre-échange Nord-Américain\")\r",
+							"    pm.expect(country.name).to.eql(\"Mexico\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".mx\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"MX\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"MX\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"52\");\r",
+							"    pm.expect(country.capital).to.eql(\"Mexico City\");\r",
+							"    pm.expect(country.population).to.eql(122273473);\r",
+							"    pm.expect(country.subregion).to.eql(\"Central America\");\r",
+							"    pm.expect(country.latlng).to.include(23.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Mexican\");\r",
+							"    pm.expect(country.area).to.eql(1964375.0);\r",
+							" \r",
+							"});\r",
+							"\r",
+							"                    //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is not the right regionalbloc acronym  'NAFTA'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"North American Free Trade Agreement\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Tratado de Libre Comercio de América del Norte\",\"Accord de Libre-échange Nord-Américain\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'AU'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"NAFTA\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\",\"League of  States\",\" Africana\",\"جامعة  العربية \");\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/NAFTA",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"NAFTA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regional bloc EFTA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"const country = response.find(item =>item.name == \"Liechtenstein\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"EFTA\");\r",
+							"//validating jason parameters with valid regionalbloc acronym \r",
+							"pm.test(\"this is the right regionalbloc acronym  'EFTA'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EFTA\");\r",
+							"   \r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc and related data\r",
+							"pm.test(\"this is the right regionalbloc 'EFTA'\", function () {\r",
+							"    //check data related to Liechtenstein regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EFTA\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"European Free Trade Association\");\r",
+							"    pm.expect(country.name).to.eql(\"Liechtenstein\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".li\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"LI\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"LI\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"423\");\r",
+							"    pm.expect(country.capital).to.eql(\"Vaduz\");\r",
+							"    pm.expect(country.population).to.eql(37623);\r",
+							"    pm.expect(country.subregion).to.eql(\"Western Europe\");\r",
+							"    pm.expect(country.latlng).to.include(9.53333333);\r",
+							"    pm.expect(country.demonym).to.eql(\"Liechtensteiner\");\r",
+							"    pm.expect(country.area).to.eql(160.0);\r",
+							" \r",
+							"});\r",
+							"                    //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is not the right regionalbloc acronym  'EFTA'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"European Free Trade Association\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.be.empty;\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'EFTA'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EFTA\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\",\"League of  States\",\" Africana\",\"جامعة  العربية \");\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/EFTA",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"EFTA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regional bloc eu",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"const country = response.find(item =>item.name == \"Austria\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"EU\");\r",
+							"//validating jason parameters with valid regionalbloc acronym \r",
+							"pm.test(\"this is  the right regionalbloc acronym  'EU'\", function () {\r",
+							"   \r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EU\");\r",
+							"   \r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc for  country and related data\r",
+							"pm.test(\"this is the right regionalbloc 'EU'\", function () {\r",
+							"    //check data related to Austria regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EU\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"European Union\");\r",
+							"    pm.expect(country.name).to.eql(\"Austria\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".at\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"AT\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"AT\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"43\");\r",
+							"    pm.expect(country.capital).to.eql(\"Vienna\");\r",
+							"    pm.expect(country.population).to.eql(8725931);\r",
+							"    pm.expect(country.subregion).to.eql(\"Western Europe\");\r",
+							"    pm.expect(country.latlng).to.include(47.33333333);\r",
+							"    pm.expect(country.demonym).to.eql(\"Austrian\");\r",
+							"    pm.expect(country.area).to.eql(83871.0);\r",
+							" \r",
+							"});\r",
+							"                     //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is not the right regionalbloc acronym  'EU'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"European Union\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.be.empty;\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'EU'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EU\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\",\"League of  States\",\" Africana\",\"جامعة  العربية \");\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/eu",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"eu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regional bloc PA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"const country = response.find(item =>item.name == \"Colombia\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"PA\");\r",
+							"//validating jason parameters with vialid regionalbloc acronym \r",
+							"pm.test(\"this is the right regionalbloc acronym  'PA'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"PA\");\r",
+							"    \r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc for  country and related data\r",
+							"pm.test(\"this is the right regionalbloc 'PA'\", function () {\r",
+							"    //check data related to Colombia regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"PA\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Pacific Alliance\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Alianza del Pacífico\");\r",
+							"    pm.expect(country.name).to.eql(\"Colombia\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".co\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"CO\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"CO\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"57\");\r",
+							"    pm.expect(country.capital).to.eql(\"Bogotá\");\r",
+							"    pm.expect(country.population).to.eql(48759958);\r",
+							"    pm.expect(country.subregion).to.eql(\"South America\");\r",
+							"    pm.expect(country.latlng).to.include(4.0,-72.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Colombian\");\r",
+							"    pm.expect(country.area).to.eql(1141748.0);\r",
+							" \r",
+							"});\r",
+							"                     //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is not the right regionalbloc acronym  'PA'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Pacific Alliance\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Alianza del Pacífico\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'PA'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"PA\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\");\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/PA",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"PA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regional bloc USAN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"const country = response.find(item =>item.name == \"Brazil\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"USAN\");\r",
+							"//validating jason parameters with valid regionalbloc acronym \r",
+							"pm.test(\"this is  the right regionalbloc acronym  'USAN'\", function () {\r",
+							"   \r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"USAN\");\r",
+							"\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc for  country and related data\r",
+							"pm.test(\"this is the right regionalbloc 'USAN'\", function () {\r",
+							"    //check data related to Brazil regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"USAN\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Union of South American Nations\");\r",
+							"    pm.expect(regionalbloc.otherAcronyms).to.include(\"UNASUR\",\"UNASUL\",\"UZAN\");\r",
+							"    pm.expect(country.name).to.eql(\"Brazil\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".br\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"BR\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"BR\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"55\");\r",
+							"    pm.expect(country.capital).to.eql(\"Brasília\");\r",
+							"    pm.expect(country.population).to.eql(206135893);\r",
+							"    pm.expect(country.subregion).to.eql(\"South America\");\r",
+							"    pm.expect(country.latlng).to.include(-10.0,-55.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Brazilian\");\r",
+							"    pm.expect(country.area).to.eql(8515767.0);\r",
+							" \r",
+							"});\r",
+							"                      //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is not the right regionalbloc acronym  'USAN'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Union of South American Nations\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"UNASUR\",\"UNASUL\",\"UZAN\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'USAN'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"USAN\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\");\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/USAN",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"USAN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regional bloc EEU",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"const country = response.find(item =>item.name == \"Belarus\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"EEU\");\r",
+							"//validating jason parameters with valid regionalbloc acronym \r",
+							"pm.test(\"this is  the right regionalbloc acronym  'EEU'\", function () {\r",
+							"\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EEU\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc for  country and related data\r",
+							"pm.test(\"this is the right regionalbloc 'EEU'\", function () {\r",
+							"    //check data related to Belarus regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EEU\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Eurasian Economic Union\");\r",
+							"    pm.expect(regionalbloc.otherAcronyms).to.include(\"EAEU\");\r",
+							"    pm.expect(country.name).to.eql(\"Belarus\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".by\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"BY\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"BY\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"375\");\r",
+							"    pm.expect(country.capital).to.eql(\"Minsk\");\r",
+							"    pm.expect(country.population).to.eql(9498700);\r",
+							"    pm.expect(country.subregion).to.eql(\"Eastern Europe\");\r",
+							"    pm.expect(country.latlng).to.include(53.0,28.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Belarusian\");\r",
+							"    pm.expect(country.area).to.eql(207600.0);\r",
+							" \r",
+							"});\r",
+							"                        //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is not the right regionalbloc acronym  'EEU'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Eurasian Economic Union\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"EAEU\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'EEU'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EEU\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\");\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/EEU",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"EEU"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regional bloc ASEAN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"const country = response.find(item =>item.name == \"Viet Nam\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"ASEAN\");\r",
+							"//validating jason parameters with valid regionalbloc acronym \r",
+							"pm.test(\"this is the right regionalbloc acronym  'ASEAN'\", function () {\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"ASEAN\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc for  country and related data\r",
+							"pm.test(\"this is the right regionalbloc 'ASEAN '\", function () {\r",
+							"    //check data related to Viet Nam regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"ASEAN\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Association of Southeast Asian Nations\");\r",
+							"    pm.expect(regionalbloc.otherAcronyms).to.be.empty;\r",
+							"    pm.expect(country.name).to.eql(\"Viet Nam\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".vn\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"VN\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"VN\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"84\");\r",
+							"    pm.expect(country.capital).to.eql(\"Hanoi\");\r",
+							"    pm.expect(country.population).to.eql(92700000);\r",
+							"    pm.expect(country.subregion).to.eql(\"South-Eastern Asia\");\r",
+							"    pm.expect(country.latlng).to.include(16.16666666,107.83333333);\r",
+							"    pm.expect(country.demonym).to.eql(\"Vietnamese\");\r",
+							"    pm.expect(country.area).to.eql(331212.0);\r",
+							" \r",
+							"});\r",
+							"\r",
+							"                        //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is not the right regionalbloc acronym  'ASEAN'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Association of Southeast Asian Nations\");\r",
+							"    pm.expect(regionalbloc.otherAcronyms).to.be.empty;\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'ASEAN'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"ASEAN\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\");\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/ASEAN",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"ASEAN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regional bloc CAIS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//validating jason parameters with valid regionalbloc for  country\r",
+							"const country = response.find(item =>item.name == \"Costa Rica\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"CAIS\");\r",
+							"//validating jason parameters with valid regionalbloc acronym \r",
+							"pm.test(\"this is the right regionalbloc acronym  'CAIS'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"CAIS\");\r",
+							"    \r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc for  country and related data\r",
+							"pm.test(\"this is the right regionalbloc 'CAIS '\", function () {\r",
+							"    //check data related to Costa Rica regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"CAIS\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Central American Integration System\");\r",
+							"    pm.expect(regionalbloc.otherAcronyms).to.include(\"SICA\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Sistema de la Integración Centroamericana,\");\r",
+							"    pm.expect(country.name).to.eql(\"Costa Rica\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".cr\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"CR\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"CR\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"506\");\r",
+							"    pm.expect(country.capital).to.eql(\"San José\");\r",
+							"    pm.expect(country.population).to.eql(4890379);\r",
+							"    pm.expect(country.subregion).to.eql(\"Central America\");\r",
+							"    pm.expect(country.latlng).to.include(10.0,-84.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Costa Rican\");\r",
+							"    pm.expect(country.area).to.eql(51100.0);\r",
+							" \r",
+							"});\r",
+							"                    //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is not the right regionalbloc acronym  'CAIS'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Central American Integration System\");\r",
+							"    pm.expect(regionalbloc.otherAcronyms).to.include(\"SICA\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Sistema de la Integración Centroamericana,\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'CAIS'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"CAIS\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\");\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/CAIS",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"CAIS"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regional bloc CEFTA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"const country = response.find(item =>item.name == \"Albania\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"CEFTA\");\r",
+							"//validating jason parameters with valid regionalbloc acronym \r",
+							"pm.test(\"this is the right regionalbloc acronym  'CEFTA'\", function () {\r",
+							"   \r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"CEFTA\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc for  country\r",
+							"pm.test(\"this is the right regionalbloc 'CEFTA '\", function () {\r",
+							"    //check data related to Albania regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"CEFTA\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Central European Free Trade Agreement\");\r",
+							"    pm.expect(regionalbloc.otherAcronyms).to.be.empty;\r",
+							"    pm.expect(regionalbloc.otherNames).to.be.empty;\r",
+							"    pm.expect(country.name).to.eql(\"Albania\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".al\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"AL\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"AL\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"355\");\r",
+							"    pm.expect(country.capital).to.eql(\"Tirana\");\r",
+							"    pm.expect(country.population).to.eql(2886026);\r",
+							"    pm.expect(country.subregion).to.eql(\"Southern Europe\");\r",
+							"    pm.expect(country.latlng).to.include(41.0,20.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Albanian\");\r",
+							"    pm.expect(country.area).to.eql(28748.0);\r",
+							" \r",
+							"});\r",
+							"\r",
+							"                    //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is not the right regionalbloc acronym  'CEFTA'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Central European Free Trade Agreement\");\r",
+							"    pm.expect(regionalbloc.otherAcronyms).to.be.empty;\r",
+							"    pm.expect(regionalbloc.otherNames).to.be.empty;\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'CEFTA'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"CEFTA\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\");\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/CEFTA",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"CEFTA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regional bloc SAARC",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"const country = response.find(item =>item.name == \"Bangladesh\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"SAARC\");\r",
+							"//validating jason parameters with valid regionalbloc acronym \r",
+							"pm.test(\"this is the right regionalbloc acronym  'SAARC'\", function () {\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"SAARC\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc for  country and related data\r",
+							"pm.test(\"this is the right regionalbloc 'SAARC '\", function () {\r",
+							"    //check data related to Bangladesh regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"SAARC\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"South Asian Association for Regional Cooperation\");\r",
+							"    pm.expect(regionalbloc.otherAcronyms).to.be.empty;\r",
+							"    pm.expect(regionalbloc.otherNames).to.be.empty;\r",
+							"    pm.expect(country.name).to.eql(\"Bangladesh\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".bd\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"BD\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"BD\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"880\");\r",
+							"    pm.expect(country.capital).to.eql(\"Dhaka\");\r",
+							"    pm.expect(country.population).to.eql(161006790);\r",
+							"    pm.expect(country.subregion).to.eql(\"Southern Asia\");\r",
+							"    pm.expect(country.latlng).to.include(24.0,90.0);\r",
+							"    pm.expect(country.demonym).to.eql(\"Bangladeshi\");\r",
+							"    pm.expect(country.area).to.eql(147570.0);\r",
+							" \r",
+							"});\r",
+							"                      //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is not the right regionalbloc acronym  'SAARC'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"South Asian Association for Regional Cooperation\");\r",
+							"    pm.expect(regionalbloc.otherAcronyms).to.be.empty;\r",
+							"    pm.expect(regionalbloc.otherNames).to.be.empty;\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'SAARC'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"SAARC\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\");\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/SAARC",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"SAARC"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by regional bloc CARICOM",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"const country = response.find(item =>item.name == \"Antigua and Barbuda\");\r",
+							"   //get the regionalbloc information and save it into variable\r",
+							"const regionalbloc = country.regionalBlocs.find(m => m.acronym === \"CARICOM\");\r",
+							"//validating jason parameters with valid regionalbloc acronym \r",
+							"pm.test(\"this is the right regionalbloc acronym  'CARICOM'\", function () {\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"CARICOM\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc for  country and related data\r",
+							"pm.test(\"this is the right regionalbloc 'CARICOM'\", function () {\r",
+							"    //check data related to Antigua and Barbuda regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"CARICOM\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Caribbean Community\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Comunidad del Caribe\",\"Communauté Caribéenne\",\"Caribische Gemeenschap\");\r",
+							"    pm.expect(country.name).to.eql(\"Antigua and Barbuda\");\r",
+							"    pm.expect(country.topLevelDomain).to.include(\".ag\");\r",
+							"    pm.expect(country.altSpellings).to.include(\"AG\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"AG\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"1268\");\r",
+							"    pm.expect(country.capital).to.eql(\"Saint John's\");\r",
+							"    pm.expect(country.population).to.eql(86295);\r",
+							"    pm.expect(country.subregion).to.eql(\"Caribbean\");\r",
+							"    pm.expect(country.latlng).to.include(17.05);\r",
+							"    pm.expect(country.demonym).to.eql(\"Antiguan, Barbudan\");\r",
+							"    pm.expect(country.area).to.eql(442.0);\r",
+							" \r",
+							"});\r",
+							" //NEGATIVE SENARIOS\r",
+							"//validating jason parameters with invalid regionalbloc acronym \r",
+							"pm.test(\"this is not the right regionalbloc acronym  'CARICOM'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"EL\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\"Caribbean Community\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Comunidad del Caribe\",\"Communauté Caribéenne\",\"Caribische Gemeenschap\");\r",
+							"});\r",
+							"//validating jason parameters with valid regionalbloc acronym invalid (name,otherNames)\r",
+							"pm.test(\"this is not the right regionalbloc name and othernames 'CARICOM'\", function () {\r",
+							"    //check data related to Egypt regionalbloc\r",
+							"    pm.expect(regionalbloc.acronym).to.equal(\"CARICOM\");\r",
+							"    pm.expect(regionalbloc.name).to.equal(\" League\");\r",
+							"    pm.expect(regionalbloc.otherNames).to.include(\"Jāmiʻat  al-ʻArabīyah\");\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/regionalbloc/CARICOM",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"regionalbloc",
+						"CARICOM"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

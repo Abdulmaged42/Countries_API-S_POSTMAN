@@ -1,0 +1,999 @@
+{
+	"info": {
+		"_postman_id": "14185456-def7-4c00-a5b2-1c67cc718ab4",
+		"name": "NegativeReq",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "NEG-Search by All information",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							" \r",
+							"const country = response.find(item =>item.name == \"Algeria\");\r",
+							"const lang = country.languages.find(m => m.iso639_1 === \"ar\");\r",
+							"    //verifying jason parameters with valid name and invalid flag \r",
+							"pm.test(\"this is not the  right flag for' Algeria'\", function () {\r",
+							"    //valid country name\r",
+							"    pm.expect(country.name).to.eql(\"Algeria\");\r",
+							"    //invalid country flag\r",
+							"    pm.expect(country.flag).to.eql(\"https://restcountries.eu/data/dza\");\r",
+							"  \r",
+							"});\r",
+							"//verifying jason parameters with invalid name and invalid flag\r",
+							"pm.test(\"this is not the right name or flag for ' Algeria\", function () {\r",
+							"    //invalid country name\r",
+							"    pm.expect(country.name).to.eql(\"Afghanistan\");\r",
+							"    //invalid country flag\r",
+							"    pm.expect(country.flag).to.eql(\"https://restcountries.eu/data/dza\");\r",
+							"  \r",
+							"});\r",
+							"//verifying jason parameters with valid name and invalid capital\r",
+							"pm.test(\"this is not the  right capital' Algeria'\", function () {\r",
+							"    //valid country name\r",
+							"    pm.expect(country.name).to.eql(\"Algeria\");\r",
+							"    //invalid  capital city\r",
+							"    pm.expect(country.capital).to.eql(\"cairo\");\r",
+							"  \r",
+							"});\r",
+							"//verifying jason parameters with invalid name and invalid subregion\r",
+							"pm.test(\"this is not the right name or subregion for ' Algeria'\", function () {\r",
+							"    //valid country name\r",
+							"    pm.expect(country.name).to.eql(\"Åland Islands\");\r",
+							"    //invalid  capital city\r",
+							"    pm.expect(country.subregion).to.eql(\"Mariehamn\");\r",
+							"  \r",
+							"});\r",
+							"//verifying jason parameters with valid name and invalid region\r",
+							"pm.test(\"this is not the  right region for' Algeria'\", function () {\r",
+							"    //valid country name\r",
+							"    pm.expect(country.name).to.eql(\"Algeria\");\r",
+							"    //invalid  region\r",
+							"    pm.expect(country.region).to.eql(\"Asia\");\r",
+							"  \r",
+							"});\r",
+							"//verifying jason parameters with valid name and invalid languages\r",
+							"pm.test(\"this is not the  right languages for' Algeria'\", function () {\r",
+							"    //valid country name\r",
+							"    pm.expect(country.name).to.eql(\"Algeria\");\r",
+							"    //invalid  languages\r",
+							"    pm.expect(lang.iso639_1).to.eql(\"ps\");\r",
+							"  \r",
+							"});\r",
+							"//verifying jason parameters with valid name and invalid alpha3Code\r",
+							"pm.test(\"this is not the  right alpha3Code for' Algeria'\", function () {\r",
+							"    //valid country name\r",
+							"    pm.expect(country.name).to.eql(\"Algeria\");\r",
+							"    //invalid  alpha3Code\r",
+							"    pm.expect(country.alpha3Code).to.eql(\"DZ\");\r",
+							"  \r",
+							"});\r",
+							"//Asserting a value type\r",
+							"//CHECK about data with valid values \r",
+							"  pm.test(\"Test data type is incorrect\", () => {\r",
+							"  pm.expect(country).to.be.an(\"array\");\r",
+							"  pm.expect(country.name).to.be.a(\"String\");\r",
+							"  pm.expect(country.population).to.be.a(\"number\");\r",
+							"  pm.expect(country.languages).to.be.an(\"array\");\r",
+							"  pm.expect(country.website).to.be.empty;\r",
+							"});\r",
+							"//verifying Status code\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time\r",
+							"pm.test(\"Response time is NOT  less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5000);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/all",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"all"
+					]
+				},
+				"description": "response with all countries and each details "
+			},
+			"response": []
+		},
+		{
+			"name": "NEG- Search by Native name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							" //search by native name\r",
+							"    const country = response.find(item =>item.nativeName == \"Eesti\");\r",
+							" //verifying jason parameters with  invalid nativeName \r",
+							"pm.test(\"this is not the  right nativeName for' Estonia'\", function () {\r",
+							"   \r",
+							"    //invalid nativeName\r",
+							"    pm.expect(country.nativeName).to.eql(\"Esta\");\r",
+							"  \r",
+							"});\r",
+							"//verifying jason parameters with valid name and invalid nativeName \r",
+							"pm.test(\"this is not the  right nativeName for' Estonia'\", function () {\r",
+							"    //valid country name\r",
+							"    pm.expect(country.name).to.eql(\"Estonia\");\r",
+							"    //invalid nativeName\r",
+							"    pm.expect(country.nativeName).to.eql(\"Eston\");\r",
+							"  \r",
+							"});\r",
+							"//verifying jason parameters with invalid name and valid nativeName \r",
+							"pm.test(\"this is not the  right name for' Estonia'\", function () {\r",
+							"    //valid country name\r",
+							"    pm.expect(country.name).to.eql(\"Egypt\");\r",
+							"    //valid nativeName\r",
+							"    pm.expect(country.nativeName).to.eql(\"Eesti\");\r",
+							"  \r",
+							"});\r",
+							"//verifying jason parameters with invalid nativeName and valid alpha2Code \r",
+							"pm.test(\"this is not the  right nativeName for' Estonia'\", function () {\r",
+							"    //valid nativeName\r",
+							"    pm.expect(country.nativeName).to.eql(\"Egypt\");\r",
+							"    //valid alpha2Code\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"EE\");\r",
+							"  \r",
+							"});\r",
+							"\r",
+							"//verifying Status code with invalid status code\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time with invalid Response time\r",
+							"pm.test(\"Response time is NOT  less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5000);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/name/eesti",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"name",
+						"eesti"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEG-Search by Partial name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//search by partial name\r",
+							"const country = response.find(item => item.name == \"United Arab Emirates\");\r",
+							"//verifying jason parameters with valid partial name \r",
+							"pm.test(\"this is not the right region for 'UAE'\", function () {\r",
+							"    //valid partial name\r",
+							"    pm.expect(country.name).to.eql(\"Emirates\");\r",
+							"\r",
+							"});\r",
+							"//verifying jason parameters with invalid partial name and valid subregion\r",
+							"pm.test(\"this is not the right name for 'UAE\", function () {\r",
+							"    //invalid partial name\r",
+							"    pm.expect(country.name).to.eql(\"United States Minor Outlying Islands\");\r",
+							"    //invalid subregion \r",
+							"    pm.expect(country.subregion).to.eql(\"Western Asia\");\r",
+							"    \r",
+							"\r",
+							"});\r",
+							"//verifying jason parameters with invalid partial name and valid altSpellings\r",
+							"pm.test(\"this is not the right name for  'UAE'\", function () {\r",
+							"    //invalid partial name\r",
+							"    pm.expect(country.name).to.eql(\"United States Minor Outlying Islands\");\r",
+							"    //valid altSpellings \r",
+							"    pm.expect(country.altSpellings).to.include(\"UAE\");\r",
+							"    \r",
+							"\r",
+							"});\r",
+							"\r",
+							"//verifying Status code with invalid status code\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time with invalid Response time\r",
+							"pm.test(\"Response time is NOT  less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5000);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/name/united",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"name",
+						"united"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEG-Search by FullName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//validating jason parameters with valid full name\r",
+							"//search by full name\r",
+							" const country = response.find(item =>item.name == \"Aruba\");\r",
+							"//verifying jason parameters with invalid name \r",
+							"pm.test(\"this is not the  right name  for' Aruba'\", function () {\r",
+							"    //invalid country name\r",
+							"    pm.expect(country.name).to.eql(\"United Arab Emirates\");\r",
+							"  \r",
+							"  \r",
+							"});\r",
+							"//verifying jason parameters with valid name and invalid nativeName \r",
+							"pm.test(\"this is not the  right   nativeName for' Aruba'\", function () {\r",
+							"    //valid country name\r",
+							"    pm.expect(country.name).to.eql(\"Aruba\");\r",
+							"    //invalid nativeName\r",
+							"    pm.expect(country.nativeName).to.eql(\"Esti\");\r",
+							"  \r",
+							"});\r",
+							"//verifying jason parameters with invalid name and valid nativeName \r",
+							"pm.test(\"this is not the  right name  for' Aruba'\", function () {\r",
+							"    //valid country name\r",
+							"    pm.expect(country.name).to.eql(\"canada\");\r",
+							"    //invalid nativeName\r",
+							"    pm.expect(country.nativeName).to.eql(\"Aruba\");\r",
+							"  \r",
+							"});\r",
+							"//Asserting a value type\r",
+							"//CHECK  data types with invalid values \r",
+							"  pm.test(\"Test data type is corrct\", () => {\r",
+							"  pm.expect(country).to.be.an(\"string\");\r",
+							"  pm.expect(country.name).to.be.a(\"string\");\r",
+							"  pm.expect(country.population).to.be.a(\"number\");\r",
+							"  pm.expect(country.languages).to.be.an(\"array\");\r",
+							"  pm.expect(country.website).to.be.undefined;\r",
+							"});\r",
+							"//verifying Status code with invalid status code\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time with invalid Response time\r",
+							"pm.test(\"Response time is NOT  less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5000);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/name/aruba?fullText=true",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"name",
+						"aruba"
+					],
+					"query": [
+						{
+							"key": "fullText",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEG-search by country code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const country = pm.response.json();\r",
+							"//verifying jason parameters with invalid code\r",
+							"pm.test(\"this is the right country\", function () {\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"gO\");\r",
+							"    \r",
+							"});\r",
+							"//verifying jason parameters with invalid name and invalid code\r",
+							"pm.test(\"this is not the right country alphacode\", function () {\r",
+							"    \r",
+							"    pm.expect(country.name).to.eql(\"ountry\");\r",
+							"  \r",
+							"    pm.expect(country.alpha2Code).to.eql(\"COL\");\r",
+							"    \r",
+							"\r",
+							"});\r",
+							"//verifying jason parameters with invalid name and valid code\r",
+							"pm.test(\"this is not the right country alphacode\", function () {\r",
+							"    \r",
+							"    pm.expect(country.name).to.eql(\"mixcico\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"CO\");\r",
+							"    \r",
+							"});\r",
+							"//verifying jason parameters with invalid alpha2Code and valid alpha3Code\r",
+							"pm.test(\"this is not the right country alphacode\", function () {\r",
+							"    \r",
+							"    pm.expect(country.alpha3Code).to.eql(\"COL\");\r",
+							"    pm.expect(country.alpha2Code).to.eql(\"co\");\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"//verifying Status code with invalid status code\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time with invalid Response time\r",
+							"pm.test(\"Response time is NOT  less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5000);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/alpha/co",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"alpha",
+						"co"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEG-Search by list of codes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"const code1 = response.find(item =>item.alpha3Code == \"COL\");\r",
+							"const code2 = response.find(item =>item.alpha2Code == \"NO\");\r",
+							"const code3 = response.find(item =>item.alpha2Code == \"EE\");\r",
+							"//get the languages information and save it into variable\r",
+							"const lang1 = code1.languages.find(m => m.iso639_1 === \"es\");\r",
+							"const lang2 = code2.languages.find(m => m.iso639_1 === \"no\");\r",
+							"const lang3 = code3.languages.find(m => m.iso639_1 === \"et\");\r",
+							"//verifying jason parameters with invalid list of codes \r",
+							"pm.test(\"this is not the right country code\", function () {\r",
+							"    \r",
+							"    //check data by  code1\r",
+							"    pm.expect(code1.alpha3Code).to.eql(\"No\");\r",
+							"   \r",
+							"    //check data by  code2\r",
+							"    pm.expect(code2.alpha2Code).to.eql(\"Co\");\r",
+							" \r",
+							"    //check data by  code3\r",
+							"    pm.expect(code3.alpha2Code).to.eql(\"EST\");\r",
+							"   \r",
+							"});\r",
+							"//verifying jason parameters with invalid alpha3Code and valid alpha2Code\r",
+							"pm.test(\"this is not the right country code\", function () {\r",
+							"    \r",
+							"    //check data by  code1\r",
+							"    pm.expect(code1.alpha3Code).to.eql(\"No\");\r",
+							"   \r",
+							"    //check data by  code2\r",
+							"    pm.expect(code2.alpha2Code).to.eql(\"NO\");\r",
+							" \r",
+							"    //check data by  code3\r",
+							"    pm.expect(code3.alpha2Code).to.eql(\"EE\");\r",
+							"   \r",
+							"});\r",
+							"//verifying jason parameters with invalid CODE1 and valid languages name\r",
+							"pm.test(\"this is not the right country code' Colombia'\", function () {\r",
+							"    \r",
+							"    //check data by  code1\r",
+							"    pm.expect(code1.alpha3Code).to.eql(\"CO\");\r",
+							"    pm.expect(lang1.name).to.eql(\"es\");\r",
+							" \r",
+							"});\r",
+							"//verifying jason parameters with invalid CODE2 and valid languages name\r",
+							"pm.test(\"this is not the right country code' Norway'\", function () {\r",
+							"    \r",
+							"    //check data by  code2\r",
+							"    pm.expect(code1.alpha2Code).to.eql(\"no\");\r",
+							"    pm.expect(lang1.name).to.eql(\"no\");\r",
+							" \r",
+							"});\r",
+							"//verifying jason parameters with invalid CODE3 and valid languages name\r",
+							"pm.test(\"this is not the right country code' Estonia'\", function () {\r",
+							"    \r",
+							"    //check data by  code3\r",
+							"    pm.expect(code1.alpha2Code).to.eql(\"EST\");\r",
+							"    pm.expect(lang1.name).to.eql(\"et\");\r",
+							" \r",
+							"});\r",
+							"//verifying jason parameters with valid CODE1 and invalid languages name\r",
+							"pm.test(\"this is not the right country languages' Colombia'\", function () {\r",
+							"    \r",
+							"    //check data by  code1\r",
+							"    pm.expect(code1.alpha3Code).to.eql(\"COL\");\r",
+							"    pm.expect(lang1.name).to.eql(\"ar\");\r",
+							" \r",
+							"});\r",
+							"//verifying jason parameters with valid CODE2 and invalid languages name\r",
+							"pm.test(\"this is not the right country languages' Norway'\", function () {\r",
+							"    \r",
+							"    //check data by  code2\r",
+							"    pm.expect(code1.alpha2Code).to.eql(\"NO\");\r",
+							"    pm.expect(lang1.name).to.eql(\"es\");\r",
+							" \r",
+							"});\r",
+							"//verifying jason parameters with valid CODE3 and invalid languages name\r",
+							"pm.test(\"this is not the right country languages' Estonia'\", function () {\r",
+							"    \r",
+							"    //check data by  code3\r",
+							"    pm.expect(code1.alpha2Code).to.eql(\"EE\");\r",
+							"    pm.expect(lang1.name).to.eql(\"no\");\r",
+							" \r",
+							"});\r",
+							"\r",
+							"//verifying Status code with invalid status code\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time with invalid Response time\r",
+							"pm.test(\"Response time is NOT  less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5000);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/alpha?codes=col;no;ee",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"alpha"
+					],
+					"query": [
+						{
+							"key": "codes",
+							"value": "col;no;ee"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEG-Search by  currency code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//validating jason parameters with currency\r",
+							"const country = response.find(item =>item.name == \"Colombia\");\r",
+							"//get the currencies information and save it into variable\r",
+							"const currency = country.currencies.find(C => C.code === \"COP\");\r",
+							"//verifying jason parameters with valid currency CODE and invalid currency (name AND SYMPOL)\r",
+							"pm.test(\"this is not the right currency name and symbol for 'Colombia'\", function () {\r",
+							"    //check data related to country code\r",
+							"    pm.expect(currency.code).to.equal(\"COP\");\r",
+							"    pm.expect(currency.name).to.equal(\"colo\");\r",
+							"    pm.expect(currency.symbol).to.equal(\"eur\");\r",
+							"    \r",
+							"\r",
+							"});\r",
+							"//verifying jason parameters with invalid currency CODE and invalid currency (name AND SYMPOL)\r",
+							"pm.test(\"this is not the right currency name and symbol and code for 'Colombia'\", function () {\r",
+							"    //check data related to country code\r",
+							"    pm.expect(currency.code).to.equal(\"es\");\r",
+							"    pm.expect(currency.name).to.equal(\"colo\");\r",
+							"    pm.expect(currency.symbol).to.equal(\"eur\");\r",
+							"\r",
+							"});\r",
+							"//verifying jason parameters with valid currency (CODE,name) and invalid( SYMPOL)\r",
+							"pm.test(\"this is the right country code 'Colombia'\", function () {\r",
+							"    //check data related to country code\r",
+							"    pm.expect(currency.code).to.equal(\"COP\");\r",
+							"    pm.expect(currency.name).to.equal(\"Colombian peso\");\r",
+							"    pm.expect(currency.symbol).to.equal(\"eur\");\r",
+							"\r",
+							"});\r",
+							"//verifying jason parameters with valid currency (symbol,name) and invalid( CODE)\r",
+							"pm.test(\"this is the right country code 'Colombia'\", function () {\r",
+							"    //check data related to country code\r",
+							"    pm.expect(currency.code).to.equal(\"vr\");\r",
+							"    pm.expect(currency.name).to.equal(\"Colombian peso\");\r",
+							"    pm.expect(currency.symbol).to.equal(\"$\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"//verifying Status code with invalid status code\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time with invalid Response time\r",
+							"pm.test(\"Response time is NOT  less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5000);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/currency/cop",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"currency",
+						"cop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEG-Search by language code.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"const country = response.find(item =>item.name == \"Belize\");\r",
+							"   //get the languages information and save it into variable\r",
+							"const lang1 = country.languages.find(m => m.iso639_1 === \"en\");\r",
+							"//'es' here second language to 'Belize' country\r",
+							"const SecondLang = country.languages.find(m => m.iso639_1 === \"es\");\r",
+							"//verifying jason parameters with valid languages CODE and invalid languages (name AND nativeName)FOR both languages\r",
+							"pm.test(\"this is not the correct languages (name AND nativeName)FOR both languages\", function () {\r",
+							"    \r",
+							"    //check data related to Belize language code\r",
+							"    pm.expect(lang1.iso639_2).to.equal(\"eng\");\r",
+							"    pm.expect(lang1.name).to.equal(\"Spanish\");\r",
+							"    pm.expect(lang1.nativeName).to.equal(\"Español\");\r",
+							"    pm.expect(SecondLang.iso639_2).to.equal(\"spa\");\r",
+							"    pm.expect(SecondLang.name).to.equal(\"English\");\r",
+							"    pm.expect(SecondLang.nativeName).to.equal(\"English\")\r",
+							" \r",
+							"});\r",
+							"//verifying jason parameters with valid languages CODE and invalid languages (name AND nativeName)FOR frist language \r",
+							"pm.test(\"this is not the correct languages (name AND nativeName)FOR 'EN' language\", function () {\r",
+							"    \r",
+							"    //check data related to Belize language code\r",
+							"    pm.expect(lang1.iso639_2).to.equal(\"eng\");\r",
+							"    pm.expect(lang1.name).to.equal(\"Spanish\");\r",
+							"    pm.expect(lang1.nativeName).to.equal(\"Español\");\r",
+							" \r",
+							"});\r",
+							"//verifying jason parameters with invalid languages CODE and valid languages (name AND nativeName)FOR frist language \r",
+							"pm.test(\"this is not the correct languages code FOR 'EN' language\", function () {\r",
+							"    \r",
+							"    //check data related to Belize language code\r",
+							"    pm.expect(lang1.iso639_2).to.equal(\"spa\");\r",
+							"    pm.expect(lang1.name).to.equal(\"English\");\r",
+							"    pm.expect(lang1.nativeName).to.equal(\"English\");\r",
+							"});\r",
+							"//verifying jason parameters with invalid languages CODE and valid languages (name AND nativeName)FOR second language \r",
+							"pm.test(\"this is not the correct languages code FOR 'ES' language\", function () {\r",
+							"    \r",
+							"    //check data related to Belize language code\r",
+							"    pm.expect(SecondLang.iso639_2).to.equal(\"eng\");\r",
+							"    pm.expect(SecondLang.name).to.equal(\"Spanish\");\r",
+							"    pm.expect(SecondLang.nativeName).to.equal(\"Español\");\r",
+							"});\r",
+							"//verifying jason parameters with invalid languages CODE and invalid languages (name AND nativeName)FOR second language \r",
+							"pm.test(\"this is not the correct languages (code,name AND nativeName)FOR 'ES' language\", function () {\r",
+							"    //check data related to Belize language code\r",
+							"    pm.expect(SecondLang.iso639_2).to.equal(\"eng\");\r",
+							"    pm.expect(SecondLang.name).to.equal(\"English\");\r",
+							"    pm.expect(SecondLang.nativeName).to.equal(\"English\");\r",
+							"});\r",
+							"//verifying jason parameters with invalid languages CODE and invalid languages (name AND nativeName)FOR frist language \r",
+							"pm.test(\"this is not the correct languages (code,name AND nativeName)  FOR 'EN' language\", function () {\r",
+							"    \r",
+							"    //check data related to Belize language code\r",
+							"    pm.expect(lang1.iso639_2).to.equal(\"spa\");\r",
+							"    pm.expect(lang1.name).to.equal(\"Spanish\");\r",
+							"    pm.expect(lang1.nativeName).to.equal(\"Español\");\r",
+							"});\r",
+							"\r",
+							"//verifying Status code with invalid status code\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time with invalid Response time\r",
+							"pm.test(\"Response time is NOT  less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5000);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/lang/es",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"lang",
+						"es"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEG-search by capital city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//search by capital city\r",
+							"const country = response.find(item =>item.capital == \"Tallinn\");\r",
+							"//verifying jason parameters with valid capital city  \r",
+							"pm.test(\"this is not the right  capital city\", function () {\r",
+							"    //valid capital city\r",
+							"    pm.expect(country.capital).to.eql(\"Talinn\");\r",
+							"\r",
+							"});\r",
+							"//verifying jason parameters with invalid capital city  and invalid country name\r",
+							"pm.test(\"this is not the right country(capital and name)\", function () {\r",
+							"    \r",
+							"    //invalid country name\r",
+							"    pm.expect(country.name).to.eql(\"Egypt\");\r",
+							"    //invalid capital city\r",
+							"    pm.expect(country.capital).to.eql(\"cairo\");\r",
+							"\r",
+							"});\r",
+							"//verifying jason parameters with invalid capital city  and valid country name\r",
+							"pm.test(\"this is not the right country(capital and name)\", function () {\r",
+							"    \r",
+							"    //invalid country name\r",
+							"    pm.expect(country.name).to.eql(\"Estonia\");\r",
+							"    //invalid capital city\r",
+							"    pm.expect(country.capital).to.eql(\"cairo\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"//verifying Status code with invalid status code\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time with invalid Response time\r",
+							"pm.test(\"Response time is NOT  less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5000);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/capital/tallinn",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"capital",
+						"tallinn"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEG-Search by callingCodes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//search by country callingCodes\r",
+							"const country = response.find(item =>item.callingCodes == \"372\");\r",
+							"//validating jason parameters with invalid callingCodes \r",
+							"pm.test(\"this is not the correct country(callingCodes )\", function () {\r",
+							"    pm.expect(country.callingCodes).to.include(\"58\");\r",
+							"    \r",
+							"});\r",
+							"//validating jason parameters with valid callingCodes and invalid name\r",
+							"pm.test(\"this is not the right country\", function () {\r",
+							"    //check data related to country callingCodes\r",
+							"    pm.expect(country.name).to.eql(\"canada\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"372\");\r",
+							"    \r",
+							"});\r",
+							"//validating jason parameters with invalid callingCodes and valid name\r",
+							"pm.test(\"this is not the correct country(callingCodes )\", function () {\r",
+							"    //check data related to country callingCodes\r",
+							"    pm.expect(country.name).to.eql(\"Estonia\");\r",
+							"    pm.expect(country.callingCodes).to.include(\"32\");\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"//verifying Status code with invalid status code\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time with invalid Response time\r",
+							"pm.test(\"Response time is NOT  less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5000);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/callingcode/372",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"callingcode",
+						"372"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEG-Search by regionEurope",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//search by country region\r",
+							"const regioncountry = response.find(item =>item.region == \"Europe\");\r",
+							"//validating jason parameters with invalid country region \r",
+							"pm.test(\"this is not the correct  REGION 'Europe'\", function () {\r",
+							"    //check data related to regioncountry 'Europe'\r",
+							"    pm.expect(regioncountry.region).to.eql(\"Asia\");\r",
+							"   \r",
+							"});\r",
+							"//validating jason parameters with invalid country region and valid country name\r",
+							"pm.test(\"this is not the correct  REGION 'Europe'\", function () {\r",
+							"    //check data related to regioncountry 'Europe'\r",
+							"    pm.expect(regioncountry.name).to.eql(\"Åland Islands\");\r",
+							"   pm.expect(regioncountry.region).to.eql(\"Asia\");\r",
+							"});\r",
+							"//validating jason parameters with invalid country region and invalid country name\r",
+							"pm.test(\"this is not the correct  REGION 'Europe'\", function () {\r",
+							"    //check data related to regioncountry 'Europe'\r",
+							"    pm.expect(regioncountry.name).to.eql(\"egypt\");\r",
+							"   pm.expect(regioncountry.region).to.eql(\"Asia\");\r",
+							"});\r",
+							"//validating jason parameters with valid country region and invalid country name\r",
+							"pm.test(\"this is not the correct  REGION 'Europe'\", function () {\r",
+							"    //check data related to regioncountry 'Europe'\r",
+							"    pm.expect(regioncountry.name).to.eql(\"egypt\");\r",
+							"   pm.expect(regioncountry.region).to.eql(\"Europe\");\r",
+							"});\r",
+							"//verifying Status code with invalid status code\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time with invalid Response time\r",
+							"pm.test(\"Response time is NOT  less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5000);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/region/europe",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"region",
+						"europe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEG-Search by regionAmericas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"const response = pm.response.json();\r",
+							"//validating jason parameters with valid country region \r",
+							"const regioncountry = response.find(item =>item.region == \"Americas\");\r",
+							" \r",
+							"//validating jason parameters with invalid country region \r",
+							"pm.test(\"this is not the correct  REGION 'Americas'\", function () {\r",
+							"    //check data related to regioncountry 'Americas'\r",
+							"    pm.expect(regioncountry.region).to.eql(\"Asia\");\r",
+							"   \r",
+							"});\r",
+							"//validating jason parameters with invalid country region and valid country name\r",
+							"pm.test(\"this is not the correct  REGION 'Americas'\", function () {\r",
+							"    //check data related to regioncountry 'Americas'\r",
+							"    pm.expect(regioncountry.name).to.eql(\"Åland Islands\");\r",
+							"   pm.expect(regioncountry.region).to.eql(\"Asia\");\r",
+							"});\r",
+							"//validating jason parameters with invalid country region and invalid country name\r",
+							"pm.test(\"this is not the correct  REGION 'Americas'\", function () {\r",
+							"    //check data related to regioncountry 'Americas'\r",
+							"    pm.expect(regioncountry.name).to.eql(\"egypt\");\r",
+							"   pm.expect(regioncountry.region).to.eql(\"Asia\");\r",
+							"});\r",
+							"//validating jason parameters with valid country region and invalid country name\r",
+							"pm.test(\"this is not the correct  REGION 'Americas'\", function () {\r",
+							"    //check data related to regioncountry 'Americas'\r",
+							"    pm.expect(regioncountry.name).to.eql(\"egypt\");\r",
+							"   pm.expect(regioncountry.region).to.eql(\"Americas\");\r",
+							"});\r",
+							"//verifying Status code with invalid status code\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//verifying Response time with invalid Response time\r",
+							"pm.test(\"Response time is NOT  less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5000);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/v2/region/Americas",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"region",
+						"Americas"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
