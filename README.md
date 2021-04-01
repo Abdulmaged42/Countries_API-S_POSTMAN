@@ -5,4 +5,5 @@ happy case scenario : positive collection
 worst-case scenario : negative collection
 and there a reigionbloc collection have its happy and worst scenario
 and there an environment hold the base url 
-each collection has it`s tests 
+each collection has it`s tests
+test cases flow gona by numbers 
