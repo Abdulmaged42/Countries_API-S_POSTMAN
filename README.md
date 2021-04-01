@@ -7,3 +7,4 @@ and there a reigionbloc collection have its happy and worst scenario
 and there an environment hold the base url 
 each collection has it`s tests
 test cases flow gona by numbers 
+tast case developed on google sheets : https://docs.google.com/spreadsheets/d/1m1p1NEr2IvJ_hxZk64qNyIDG7rtUBoFPufZa6ZVQnqM/edit?usp=sharing
